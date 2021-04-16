@@ -1,0 +1,74 @@
+class Solution {
+public:
+    std::vector<std::string> MakeCombination(std::vector<std::string> &v1,
+                                         std::vector<std::string> &v2)
+        {
+	        std::vector<std::string> result;
+	        for (int i = 0; i < v1.size(); i++)
+	        {
+		        for (int j = 0; j < v2.size(); j++)
+		        {
+			        result.push_back(v1[i] + v2[j]);
+		        }
+	        }
+	    return result;
+    }
+    vector<string> letterCombinations(string digits) {
+       
+        std::map<char, std::vector<std::string> > numToString;
+	    numToString['2'].push_back("a");
+	    numToString['2'].push_back("b");
+	    numToString['2'].push_back("c");
+							   
+	    numToString['3'].push_back("d");
+	    numToString['3'].push_back("e");
+	    numToString['3'].push_back("f");
+							   
+	    numToString['4'].push_back("g");
+	    numToString['4'].push_back("h");
+	    numToString['4'].push_back("i");
+							   
+	    numToString['5'].push_back("j");
+	    numToString['5'].push_back("k");
+	    numToString['5'].push_back("l");
+							   
+	    numToString['6'].push_back("m");
+	    numToString['6'].push_back("n");
+	    numToString['6'].push_back("o");
+							   
+	    numToString['7'].push_back("p");
+	    numToString['7'].push_back("q");
+	    numToString['7'].push_back("r");
+	    numToString['7'].push_back("s");
+							   
+	    numToString['8'].push_back("t");
+	    numToString['8'].push_back("u");
+	    numToString['8'].push_back("v");
+							   
+	    numToString['9'].push_back("w");
+	    numToString['9'].push_back("x");
+	    numToString['9'].push_back("y");
+	    numToString['9'].push_back("z");
+
+
+	    std::vector<std::string> result;
+	    if (digits.size() > 1)
+	    {
+		    result = MakeCombination(numToString[digits[digits.size() - 2]],numToString[digits[digits.size() - 1]]);
+
+		    if (digits.size() > 2)
+		    {
+			    for (int i = digits.size() - 3; i >= 0; i--)
+			    {
+				    result = MakeCombination(numToString[digits[i]], result);
+			    }
+		    }
+	    }
+	    else if(digits.size()==1)
+	    {
+		    result = numToString[digits[0]];
+	    }
+        
+        return result;
+    }
+};
